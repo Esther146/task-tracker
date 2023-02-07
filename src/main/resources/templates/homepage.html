@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <title>Task Management System</title>
+</head>
+<body>
+  <main id="home-main">
+      <section>
+          <h1>Activity Management System</h1>
+          <p>To manage your tasks very well, use the below formats and see the magic</p>
+      </section>
+      <section class="container">
+          <button type="button" class="blue-btn"><a th:href="@{/task/add-task}">Add Task</a></button>
+          <table>
+              <thead class="dark-background">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>CompletedAt</th>
+                    <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="task: ${tasks}">
+                    <td th:text="${task.title}"></td>
+                    <td th:text="${task.getDescription()}"></td>
+                    <td th:text="${task.getStatus()}"></td>
+                    <td th:text="${task.getCompletedAt()}"></td>
+                    <td th:text="${task.getUpdatedAt()}"></td>
+                    <td th:text="${task.getCompletedAt()}"></td>
+                </tr>
+              </tbody>
+          </table>
+      </section>
+  </main>
+</body>
+</html>

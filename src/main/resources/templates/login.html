@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <title>Login</title>
+</head>
+<body>
+    <main id="login-main">
+        <section id="left-section">
+            <h2>Welcome back!!</h2>
+            <p>Enter your email and password continue</p>
+        </section>
+        <section id="right section">
+            <form method="post" th:action="@{/tracker/login-user}" th:object="${loginDto}">
+                <label for="email"></label>
+                <input type="email" id="email" placeholder="email" name="email" class="input-field">
+
+                <label for="password"></label>
+                <input type="passsword" id="password" placeholder="password" name="password" class="input-field">
+
+                <button type="submit" class="green-btn">Login</button>
+            </form>
+
+            <p>If you don't have account yet <a th:href="@{/tracker/sign-up}">SignUp</a></p>
+
+        </section>
+    </main>
+</body>
+</html>

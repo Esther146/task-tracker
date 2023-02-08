@@ -6,6 +6,11 @@
     <title>Task Management System</title>
 </head>
 <body>
+    <nav class="nav">
+        <a th:href="@{/tracker/home-page}">
+            <h1>Task Tracker</h1>
+        </a>
+    </nav>
   <main id="home-main">
       <section>
           <h1>Activity Management System</h1>
@@ -33,10 +38,24 @@
                     <td th:text="${task.getCompletedAt()}"></td>
                     <td th:text="${task.getUpdatedAt()}"></td>
                     <td th:text="${task.getCompletedAt()}"></td>
+                    <td>
+                        <a  th:href="@{/task/edit{id} (id=${task.id})}">
+                            <button type="submit" class="btn-green">
+                                Edit
+                            </button>
+                        </a>
+
+                        <a >
+                        <button type="submit" class="red-btn">Delete</button>
+                        </a>
+                    </td>
                 </tr>
               </tbody>
           </table>
       </section>
   </main>
+    <footer>
+        <small>&copy All rights reserved</small>
+    </footer>
 </body>
 </html>

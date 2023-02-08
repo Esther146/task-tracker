@@ -28,11 +28,18 @@ public class TaskService {
         task.setUser(user);
         return taskRepository.save(task);
     }
+    public Task getById(Long id){
+        return taskRepository.findById(id).get();
+    }
 
     public List<Task> getAllTask(){
         return taskRepository.findAll();
     }
 
 
+
+    public Task updateTask(Task taskDto){
+        return taskRepository.save(taskDto);
+    }
 
 }

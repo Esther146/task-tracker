@@ -1,5 +1,6 @@
 package com.esther.activitytracker.controller;
 
+import com.esther.activitytracker.model.Task;
 import com.esther.activitytracker.payload.LoginDto;
 import com.esther.activitytracker.payload.TaskDto;
 import com.esther.activitytracker.repository.TaskRepository;
@@ -8,10 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/task")
@@ -35,5 +33,20 @@ public class TaskController {
 
     }
 
+    @GetMapping("edit{id}")
+    public String editTask(@PathVariable Long id, Model model){
+        model.addAttribute("edit", taskService.getById(id));
+        return "edit_task";
+    }
 
+    @PostMapping("{id}")
+    public String updateEditedTask(@PathVariable Long id, @ModelAttribute("edits") TaskDto taskDto){
+        Task existingTask = taskService.getById(id);
+
+        existingTask.setTitle(taskDto.getTitle());
+        existingTask.setDescription((taskDto.getDescription()));
+        existingTask.setStatus(taskDto.getStatus());
+        taskService.updateTask(existingTask);
+        return "redirect:/tracker/home-page";
+    }
 }

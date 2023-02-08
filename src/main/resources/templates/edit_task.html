@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <title>Edit task</title>
+</head>
+<body>
+<nav class="nav">
+    <a th:href="@{/tracker/home-page}">
+        <h1>Task Tracker</h1>
+    </a>
+</nav>
+<main>
+    <section>
+        <h2>Edit your Task to effect changes</h2>
+        <form  th:action="@{/task/{id} (id=${edit.id})}" th:object="${edit}" method="post">
+
+            <label for="id"></label>
+            <input type="hidden" id="id" name="id" placeholder="id" th:value="${session.id}" class="input-field">
+
+            <label for="title"></label>
+            <input type="text" id="title" name="title" placeholder="title" class="input-field">
+
+            <label for="description"></label>
+            <input type="text" id="description" name="description" placeholder="description" class="input-field">
+
+            <label for="status"></label>
+            <input type="text" id="status" name="status" placeholder="status" class="input-field">
+
+            <button type="submit" class="green-btn">Submit</button>
+
+        </form>
+    </section>
+</main>
+    <footer>
+        <small>&copy All rights reserved</small>
+    </footer>
+</body>
+</html>
